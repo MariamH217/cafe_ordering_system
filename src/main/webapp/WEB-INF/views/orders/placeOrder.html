@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Order</title>
+</head>
+<body>
+
+<h1>Place Order</h1>
+
+<form method="post" th:action="@{/order/place}" th:object="${order}" enctype="multipart/form-data">
+    <label for="waiterId">Waiter ID:</label>
+    <input type="text" th:field="*{waiterId}" id="waiterId"/>
+    <div th:if="${#fields.hasErrors('waiterId')}" th:errors="*{waiterId}" class="text-danger"></div>
+    <br/>
+
+    <label for="tableNumber">Table Number:</label>
+    <input type="text" th:field="*{tableNumber}" id="tableNumber"/>
+    <div th:if="${#fields.hasErrors('tableNumber')}" th:errors="*{tableNumber}" class="text-danger"></div>
+    <br/>
+
+    <label for="orderTime">Order Time:</label>
+    <input type="datetime-local" th:field="*{orderTime}"
+           th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd\'T\'HH:mm')}" id="orderTime"/>
+    <div th:if="${#fields.hasErrors('orderTime')}" th:errors="*{orderTime}" class="text-danger"></div>
+    <br/>
+
+    <label for="isFinalized">Is Finalized:</label>
+    <input type="checkbox" th:field="*{isFinalized}" id="isFinalized"/>
+    <div th:if="${#fields.hasErrors('isFinalized')}" th:errors="*{isFinalized}" class="text-danger"></div>
+    <br/>
+
+
+    <h2>Order Details</h2>
+
+    <!-- Assuming you have a list of items to select from -->
+    <label for="itemId">Item ID:</label>
+    <select th:field="*{orderDetails.itemId}" id="itemId">
+        <option th:each="item : ${items}" th:value="${item.itemId}" th:text="${item.name}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('orderDetails.itemId')}" th:errors="*{orderDetails.itemId}" class="text-danger"></div>
+    <br/>
+
+    <label for="quantity">Quantity:</label>
+    <input type="text" th:field="*{orderDetails.quantity}" id="quantity"/>
+    <div th:if="${#fields.hasErrors('orderDetails.quantity')}" th:errors="*{orderDetails.quantity}"
+         class="text-danger"></div>
+    <br/>
+
+    <label for="priceAtTime">Price at Time:</label>
+    <input type="text" th:field="*{orderDetails.priceAtTime}" id="priceAtTime"/>
+    <div th:if="${#fields.hasErrors('orderDetails.priceAtTime')}" th:errors="*{orderDetails.priceAtTime}"
+         class="text-danger"></div>
+    <br/>
+
+
+<!-- Add other order details fields as needed -->
+
+<button type="submit">Place Order</button>
+</form>
+
+</body>
+</html>

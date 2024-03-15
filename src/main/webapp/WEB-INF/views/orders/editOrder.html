@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Order</title>
+</head>
+<body>
+
+<h1>Edit Order</h1>
+
+<!-- Form for editing Order -->
+<form method="post" th:action="@{/order/modify/{orderId}(orderId=${order.orderId})}" th:object="${order}">
+    <!-- Order fields -->
+    <label for="waiterId">Waiter ID:</label>
+    <input type="text" th:field="*{waiterId}" id="waiterId"/>
+    <div th:if="${#fields.hasErrors('waiterId')}" th:errors="*{waiterId}" class="text-danger"></div>
+    <br/>
+
+    <label for="tableNumber">Table Number:</label>
+    <input type="text" th:field="*{tableNumber}" id="tableNumber"/>
+    <div th:if="${#fields.hasErrors('tableNumber')}" th:errors="*{tableNumber}" class="text-danger"></div>
+    <br/>
+
+    <label for="orderTime">Order Time:</label>
+    <input type="datetime-local" th:field="*{orderTime}" id="orderTime"/>
+    <div th:if="${#fields.hasErrors('orderTime')}" th:errors="*{orderTime}" class="text-danger"></div>
+    <br/>
+
+    <label for="isFinalized">Is Finalized:</label>
+    <input type="checkbox" th:field="*{isFinalized}" id="isFinalized"/>
+    <div th:if="${#fields.hasErrors('isFinalized')}" th:errors="*{isFinalized}" class="text-danger"></div>
+    <br/>
+
+    <button type="submit">Update Order</button>
+</form>
+
+<hr/>
+
+<!-- Form for editing OrderDetails -->
+<form method="post" th:action="@{/orderDetails/modify/{orderId}(orderId=${order.orderId})}" th:object="${orderDetails}">
+    <!-- OrderDetails fields -->
+    <label for="itemId">Item ID:</label>
+    <input type="text" th:field="*{itemId}" id="itemId"/>
+    <div th:if="${#fields.hasErrors('itemId')}" th:errors="*{itemId}" class="text-danger"></div>
+    <br/>
+
+    <label for="quantity">Quantity:</label>
+    <input type="text" th:field="*{quantity}" id="quantity"/>
+    <div th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="text-danger"></div>
+    <br/>
+
+
+    <label for="priceAtTime">Price at Time:</label>
+    <input type="text" th:field="*{priceAtTime}" id="priceAtTime"/>
+    <div th:if="${#fields.hasErrors('priceAtTime')}" th:errors="*{priceAtTime}" class="text-danger"></div>
+    <br/>
+
+
+    <button type="submit">Update OrderDetails</button>
+</form>
+
+</body>
+</html>

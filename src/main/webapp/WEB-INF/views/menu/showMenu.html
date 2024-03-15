@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+</head>
+<body>
+
+<h1>Menu Items</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="menuItem : ${menuItems}">
+        <td th:text="${menuItem.itemId}">ID</td>
+        <td th:text="${menuItem.name}">Name</td>
+        <td th:text="${menuItem.description}">Description</td>
+        <td th:text="${menuItem.price}">Price</td>
+        <td th:text="${menuItem.category}">Category</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<hr/>
+
+<a href="/menu/new">Create new menu item</a>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Menu</title>
+</head>
+<body>
+<form method="POST" th:action="@{/menu/update/{itemId}}" th:object="${menuItem}">
+    <input type="hidden" th:field="*{itemId}"/>
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+
+    <label for="description">Description:</label>
+    <textarea th:field="*{description}" id="description"></textarea>
+    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+
+    <label for="price">Price:</label>
+    <input type="number" step="0.01" th:field="*{price}" id="price"/>
+    <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
+
+    <label for="category">Category:</label>
+    <input type="text" th:field="*{category}" id="category"/>
+    <div th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="text-danger"></div>
+
+    <button type="submit">Update</button>
+</form>
+</body>
+</html>

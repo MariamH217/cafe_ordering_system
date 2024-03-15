@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Bill</title>
+</head>
+<body>
+
+<h1>Generate Bill</h1>
+
+<form method="get" th:action="@{/billing/generate/{orderId}(orderId=${orderId})}">
+    <label for="orderId">Order ID:</label>
+    <input type="text" th:field="*{orderId}" id="orderId"/>
+    <div th:if="${#fields.hasErrors('orderId')}" th:errors="*{orderId}" class="text-danger"></div>
+    <br/>
+
+    <button type="submit">Generate Bill</button>
+</form>
+
+</body>
+</html>

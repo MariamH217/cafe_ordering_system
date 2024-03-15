@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Menu Item</title>
+</head>
+<body>
+
+<h1>Menu Item Details</h1>
+
+<p th:text="${menuItem.name + ', Price: ' + menuItem.price}">Name and Price</p>
+<p th:text="${'Description: ' + menuItem.description}">Description</p>
+<p th:text="${'Category: ' + menuItem.category}">Category</p>
+
+<a th:href="@{/menu/{id}/edit(id=${menuItem.itemId})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/menu/{id}(id=${menuItem.itemId})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>
